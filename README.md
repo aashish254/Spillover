@@ -4,6 +4,9 @@
 </p>
 <br>
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-teal)](LICENSE)
+[![Python >= 3.9](https://img.shields.io/badge/python-%3E%3D3.9-blue)](https://python.org)
+
 <h1 align="center">Spillover</h1>
 
 **Rebalance your Google storage across your own accounts — locally, open source.**
@@ -14,14 +17,30 @@ Everything runs on **your PC**. No servers, no uploads to third parties, no acco
 
 ---
 
-## Demo video — coming soon
+## Demo video
 
-This folder has a reserved space (`demo.mp4`) where we'll put the walkthrough video. Until then, launch the UI and hit the guide above — it mirrors the flow line-by-line.
+[![Spillover — 7-minute tutorial](https://img.youtube.com/vi/EVb7bLrMGnY/0.jpg)](https://www.youtube.com/watch?v=EVb7bLrMGnY)
+
+Full walkthrough: connecting accounts, the rebalance wizard, duplicates, and the Photos picker — 7m22s.
 
 **Quick run:**
 - **UI:** `spillover ui` opens http://127.0.0.1:8741  
 - **Demo mode (no sign-in):** `spillover ui --demo`  
 - **Custom port:** `spillover ui --port 9000 --no-browser`  
+
+## Screenshots
+
+**Accounts page** – See all your Google accounts, quotas at a glance. Click to connect or reconnect.
+
+![Accounts](assets/screenshots/accounts.png)
+
+**Rebalance wizard** – Pick a full account, choose files, dry-run the plan, then execute with hash verification and trash-not-delete safety.
+
+![Rebalance](assets/screenshots/rebalance.png)
+
+**Ledger** – Every move recorded locally: filename, size, hash, source → destination. Search by filename to find where something went.
+
+![Ledger](assets/screenshots/ledger.png)
 
 Want a screen capture now? The CLI mirror is identical to what you'd see in the web UI:
 
@@ -46,7 +65,7 @@ spillover run --plan ~/.spillover/plans/plan-main-*.json --execute
 - **Google Drive: fully supported.** Scan, plan, move, verify — all automatic.
 - **Google Photos: two supported routes.** Since March 2025, Google blocks all third-party apps from reading your full photo library and provides **no API to delete photos**. So for Photos:
   - **Picker (recommended):** `spillover photos create --alias main` prints a Google picker link — select what to move in Google's own UI, and Spillover copies your picks (hash-verified) into your other accounts' Drive storage. Also in the web UI under Takeout → Photos picker. Spillover only ever sees the items you pick.
-  - **Takeout:** export via [Google Takeout](https://takeout.google.com), then `spillover takeout --dir ~/takeout --execute` distributes everything.
+  - **Takeout:** export via Google Takeout (https://takeout.google.com), then `spillover takeout --dir ~/takeout --execute` distributes everything.
   - Either way, **you bulk-delete the originals in the Photos UI yourself** (Google's rule, not ours — no tool on earth can do this via API in 2026). Spillover writes a deletion checklist to `~/.spillover/photo_manifests/`.
 - **Gmail: never touched.** Spillover doesn't even request Gmail scopes.
 
@@ -69,9 +88,9 @@ pip install -e .                # gives you the `spillover` command
 
 Spillover uses *your own* Google Cloud project (this is how tools like rclone do it):
 
-1. Create a Google Cloud project: [console.cloud.google.com/projectcreate](https://console.cloud.google.com/projectcreate)
+1. Create a Google Cloud project: https://console.cloud.google.com/projectcreate
 2. Enable APIs: [Drive API](https://console.cloud.google.com/apis/library/drive.googleapis.com), [Photos Picker API](https://console.cloud.google.com/apis/library/photospicker.googleapis.com)
-3. Create Credentials → OAuth client ID (Desktop app): [console.cloud.google.com/apis/credentials](https://console.cloud.google.com/apis/credentials)
+3. Create Credentials → OAuth client ID (Desktop app): https://console.cloud.google.com/apis/credentials
 4. Download JSON → save as `~/.spillover/client_secret.json`:
    ```bash
    mkdir -p ~/.spillover && cp ~/Downloads/client_secret*.json ~/.spillover/client_secret.json
