@@ -1,0 +1,6 @@
+google-api-python-client>=2.100
+google-auth-oauthlib>=1.2
+keyring>=25.0
+tqdm>=4.66
+fastapi>=0.110
+uvicorn[standard]>=0.29

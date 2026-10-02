@@ -1,0 +1,28 @@
+[project]
+name = "spillover"
+version = "0.1.0"
+description = "Rebalance Google Drive storage across your own accounts — locally, open source."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.9"
+dependencies = [
+    "google-api-python-client>=2.100",
+    "google-auth-oauthlib>=1.2",
+    "keyring>=25.0",
+    "tqdm>=4.66",
+    "fastapi>=0.110",
+    "uvicorn[standard]>=0.29",
+]
+
+[project.scripts]
+spillover = "spillover.cli:main"
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["spillover*"]
+
+[tool.setuptools.package-data]
+spillover = ["web/static/*"]

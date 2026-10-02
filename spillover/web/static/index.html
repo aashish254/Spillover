@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f2f1ec">
+<meta name="description" content="Spillover — rebalance Google Drive storage across your own accounts, locally.">
+<title>Spillover</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23191b1a'/%3E%3Cpath d='M10 7v13a6 6 0 0 0 6 6 6 6 0 0 0 6-6V7' stroke='%23f6f5f0' stroke-width='2.4' fill='none' stroke-linecap='round'/%3E%3Cpath d='M11.7 15v5a4.3 4.3 0 0 0 4.3 4.3 4.3 4.3 0 0 0 4.3-4.3v-5z' fill='%2315907f'/%3E%3Cpath d='M25.7 8.6l2.2 3.5a2.6 2.6 0 1 1-4.4 0z' fill='%2315907f'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="app">
+  <aside class="sidebar" aria-label="Primary">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 32 32" fill="none"><path d="M10 7v13a6 6 0 0 0 6 6 6 6 0 0 0 6-6V7" stroke="#f6f5f0" stroke-width="2.4" stroke-linecap="round"/><path d="M11.7 15v5a4.3 4.3 0 0 0 4.3 4.3 4.3 4.3 0 0 0 4.3-4.3v-5z" fill="#15907f"/><path d="M25.7 8.6l2.2 3.5a2.6 2.6 0 1 1-4.4 0z" fill="#15907f"/></svg>
+      </span>
+      <span class="brand-name">Spillover<span class="brand-sub">Local storage balancer</span></span>
+    </div>
+    <nav class="nav" aria-label="Views">
+      <button class="nav-item active" data-route="accounts" aria-current="page">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="7" rx="2"/><rect x="2" y="14" width="20" height="7" rx="2"/><path d="M6 6.5h.01M6 17.5h.01"/></svg>
+        Accounts
+      </button>
+      <button class="nav-item" data-route="rebalance">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 16V8m0 0L4 11m3-3 3 3"/><path d="M17 8v8m0 0 3-3m-3 3-3-3"/></svg>
+        Rebalance
+      </button>
+      <button class="nav-item" data-route="duplicates">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="3" width="13" height="13" rx="2.5"/><path d="M16 20.5H5.5A2.5 2.5 0 0 1 3 18V7.5"/></svg>
+        Duplicates
+        <span class="nav-badge" id="dup-count" hidden></span>
+      </button>
+      <button class="nav-item" data-route="takeout">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="1.6"/><path d="m21 15-4.5-4.5L6 21"/></svg>
+        Takeout
+      </button>
+      <button class="nav-item" data-route="ledger">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8v4l2.5 2.5"/><circle cx="12" cy="12" r="9"/></svg>
+        Ledger
+        <span class="nav-badge" id="ledger-count" hidden></span>
+      </button>
+    </nav>
+    <div class="sidebar-foot">
+      <div class="storage-total" id="storage-total" aria-live="polite"></div>
+      <div id="mode-pill"></div>
+      <div class="build-tag" id="build-tag" title="Build version"></div>
+    </div>
+  </aside>
+
+  <div class="main-col">
+    <header class="topbar">
+      <div class="crumbs" aria-label="Location"><span>spillover</span><span class="sep" aria-hidden="true">/</span><span id="view-name">accounts</span></div>
+      <div class="topbar-actions" id="topbar-actions"></div>
+    </header>
+    <nav class="mobile-nav" aria-label="Views">
+      <button class="nav-item active" data-route="accounts">Accounts</button>
+      <button class="nav-item" data-route="rebalance">Rebalance</button>
+      <button class="nav-item" data-route="duplicates">Duplicates</button>
+      <button class="nav-item" data-route="takeout">Takeout</button>
+      <button class="nav-item" data-route="ledger">Ledger</button>
+    </nav>
+    <main id="main" class="content" tabindex="-1">
+      <section class="view active" id="view-accounts" aria-label="Accounts"></section>
+      <section class="view" id="view-rebalance" aria-label="Rebalance"></section>
+      <section class="view" id="view-duplicates" aria-label="Duplicates"></section>
+      <section class="view" id="view-takeout" aria-label="Takeout"></section>
+      <section class="view" id="view-ledger" aria-label="Ledger"></section>
+    </main>
+  </div>
+</div>
+<div id="modal-root"></div>
+<div id="toast-root" aria-live="polite" aria-atomic="false"></div>
+<script src="/static/app.js"></script>
+</body>
+</html>

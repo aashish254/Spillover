@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Spillover">
+  <rect width="64" height="64" rx="16" fill="#191b1a"/>
+  <path d="M20 14v26a12 12 0 0 0 12 12 12 12 0 0 0 12-12V14" stroke="#f6f5f0" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+  <path d="M23.5 30v10a8.5 8.5 0 0 0 8.5 8.5 8.5 8.5 0 0 0 8.5-8.5V30z" fill="#15907f"/>
+  <path d="M51.4 17.2l4.4 7a5.2 5.2 0 1 1-8.8 0z" fill="#15907f"/>
+</svg>
