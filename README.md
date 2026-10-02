@@ -10,18 +10,9 @@ Everything runs on **your PC**. No servers, no uploads to third parties, no acco
 
 ---
 
-## Demo video — tutorial
+## Demo video — coming soon
 
-We're recording the full walkthrough — in the meantime, here's the system UI:
-
-<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:8px;background:#f8f7f3;">
-  <iframe src="https://www.youtube.com/embed/EVb7bLrMGnY" 
-          style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;" 
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-          allowfullscreen></iframe>
-</div>
-
-<p style="margin-top:12px;font-size:13px;color:var(--muted)">Demo video placeholder: <code>demo.mp4</code> slot remains reserved.</p>
+This folder has a reserved space (`demo.mp4`) where we'll put the walkthrough video. Until then, launch the UI and hit the guide above — it mirrors the flow line-by-line.
 
 **Quick run:**
 - **UI:** `spillover ui` opens http://127.0.0.1:8741  
