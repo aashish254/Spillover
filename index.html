@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Spillover</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="sidebar">
+    <div class="brand"><span class="logo-icon"></span><div>Spillover<span class="tag">local storage balancer</span></div></div>
+  </div>
+
+  <main id="main" class="content">
+    <div class="view-head">
+      <h2>Install & Run</h2>
+      <p style="margin-top:.3em">Copy these lines into your terminal to get started.</p>
+    </div>
+
+    <div class="summary-strip">
+      <div class="stat"><div class="k">Clone</div><div class="v">&lt;1 min</div></div>
+      <div class="stat"><div class="k">Setup</div><div class="v">~2 min</div></div>
+      <div class="stat"><div class="k">Run</div><div class="v">one command</div></div>
+    </div>
+
+    <details class="sg-item" open>
+      <summary>Quick install</summary>
+      <div class="card panel">
+        <pre class="cmd-block"><code>git clone https://github.com/aashish254/Spillover.git spillover
+cd spillover
+python3 -m venv .venv
+source .venv/bin/activate       # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+pip install -e .</code></pre>
+      </div>
+    </details>
+
+    <details class="sg-item">
+      <summary>One-time setup: Google Cloud project (~2 min)</summary>
+      <div class="card panel">
+        <ol class="setup-steps">
+          <li>Create project: <a href="https://console.cloud.google.com/projectcreate" target="_blank" rel="noopener">console.cloud.google.com/projectcreate</a></li>
+          <li>Enable APIs: Drive API, Photos Picker API</li>
+          <li>Create Credentials → OAuth client ID (Desktop app)</li>
+          <li>Download JSON → save as <code>~/.spillover/client_secret.json</code></li>
+        </ol>
+        <div class="note"><strong>Note:</strong> in testing mode Google expires the login every ~7 days — re-run <code>spillover auth reconnect --alias &lt;name&gt;</code> or hit Reconnect in the web UI.</div>
+      </div>
+    </details>
+
+    <details class="sg-item">
+      <summary>Run the app</summary>
+      <div class="card panel">
+        <pre class="cmd-block"><code># Open local web UI at 127.0.0.1:8741
+spillover ui
+
+# Demo mode (no sign-in needed)
+spillover ui --demo
+
+# Pick your own port
+spillover ui --port 9000 --no-browser</code></pre>
+      </div>
+    </details>
+
+    <details class="sg-item">
+      <summary>Demo video — coming soon</summary>
+      <div class="card panel">
+        <p>This folder has a reserved slot (demo.mp4). Until then, the CLI mirror shows what you’d see in the web UI.</p>
+      </div>
+    </details>
+
+    <footer style="margin-top:28px;font-size:12px;color:var(--faint)">MIT License — see LICENSE in repo.</footer>
+  </main>
+</body>
+</html>
