@@ -28,13 +28,15 @@ a:hover { color: var(--teal); }
 
 .sidebar { width: 240px; background: var(--sidebar); border-right: 1px solid var(--hairline); padding: 20px; flex-shrink: 0; }
 .brand { display: flex; align-items: center; gap: 10px; margin-bottom: 24px; }
-.logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, var(--ink) 40%, var(--teal) 100%); border-radius: 8px; }
+.logo-svg { width: 40px; height: 40px; border-radius: 8px; }
 .brand div { font-weight: 700; font-size: 20px; }
 .tag { font-family: monospace; font-size: 11px; color: var(--faint); margin-left: 4px; }
 
 .content { flex: 1; padding: 40px; max-width: 900px; }
-.view-head h2 { font-family: Georgia, "Times New Roman", serif; font-size: 36px; margin: 0 0 8px; letter-spacing: -0.02em; }
-.view-head p { color: var(--muted); font-size: 15px; margin: 0; }
+.hero { text-align: center; margin-bottom: 40px; }
+.hero-logo { width: 120px; height: 120px; margin-bottom: 16px; }
+.hero h2 { font-family: Georgia, "Times New Roman", serif; font-size: 36px; margin: 0 0 8px; letter-spacing: -0.02em; }
+.hero p { color: var(--muted); font-size: 15px; margin: 0; }
 
 .summary-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; margin: 28px 0; }
 .stat { background: var(--surface); border: 1px solid var(--hairline); border-radius: 8px; padding: 14px 16px; }
@@ -66,5 +68,5 @@ footer { color: var(--faint); font-size: 12px; }
   .sidebar { width: 100%; padding: 12px; }
   .brand { margin-bottom: 0; }
   .content { padding: 20px; }
-  .view-head h2 { font-size: 28px; }
+  .hero h2 { font-size: 28px; }
 }
