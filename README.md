@@ -53,7 +53,7 @@ One-liner install + one-time setup:
 
 ```bash
 # 1. Clone and install
-git clone <your-repo-url> spillover && cd spillover
+git clone https://github.com/aashish254/Spillover.git spillover && cd spillover
 python3 -m venv .venv
 source .venv/bin/activate       # macOS/Linux; Windows: .venv\Scripts\activate
 pip install -r requirements.txt
@@ -64,15 +64,13 @@ pip install -e .                # gives you the `spillover` command
 
 Spillover uses *your own* Google Cloud project (this is how tools like rclone do it):
 
-```bash
-mkdir -p ~/.spillover && \
-curl -o /dev/null https://console.cloud.google.com/apis/library/drive.googleapis.com \
-      https://console.cloud.google.com/apis/library/photospicker.googleapis.com \
-      https://console.cloud.google.com/apis/credentials/consent \
-      https://console.cloud.google.com/apis/credentials
-# Download client_secret.json from the Console, rename if needed, then:
-cp ~/Downloads/client_secret*.json ~/.spillover/client_secret.json
-```
+1. Create a Google Cloud project: [console.cloud.google.com/projectcreate](https://console.cloud.google.com/projectcreate)
+2. Enable APIs: [Drive API](https://console.cloud.google.com/apis/library/drive.googleapis.com), [Photos Picker API](https://console.cloud.google.com/apis/library/photospicker.googleapis.com)
+3. Create Credentials → OAuth client ID (Desktop app): [console.cloud.google.com/apis/credentials](https://console.cloud.google.com/apis/credentials)
+4. Download JSON → save as `~/.spillover/client_secret.json`:
+   ```bash
+   mkdir -p ~/.spillover && cp ~/Downloads/client_secret*.json ~/.spillover/client_secret.json
+   ```
 
 > In testing mode Google expires the login every ~7 days — just re-run `spillover auth reconnect --alias <name>` (or hit Reconnect in the web UI). (Publishing the project to "Production" makes tokens long-lived but keeps an "unverified app" warning screen.)
 
@@ -206,128 +204,6 @@ spillover/
   ledger.py     SQLite record of every move + transfer transactions
   cli.py        `spillover` command
 ```
-
----
-
-## Host the docs on GitHub Pages (same design)
-
-We ship a vanilla static bundle (`spillover/web/static`) that runs offline. To host it:
-
-### Option A: GitHub Pages (automatic)
-
-```bash
-# From the repo root
-git commit -m "chore: initial release" && git push
-cd spillover/web/static
-# Create gh-pages branch from here (static assets only)
-git checkout -b gh-pages
-git add .
-git commit -m "docs: deploy static site" && git push -u origin gh-pages
-
-# In your repository Settings → Pages → Source, set "gh-pages branch".
-# Your docs will be available at https://<user>.github.io/<repo>/
-```
-
-To match the look-and-feel of the web UI:
-
-- Copy the CSS variables from [`styles.css`](spillover/web/static/styles.css):
-  ```css
-  :root {
-    --canvas: #f2f1ec;              /* page background */
-    --surface: #f8f7f3;             /* card background */
-    --field: #fbfaf7;               /* input backgrounds */
-    --sidebar: #edece5;             /* left rail */
-    --ink: #191b1a;                 /* primary text */
-    --ink-2: #3c413e;               /* secondary text */
-    --muted: #5d625e;               /* muted labels */
-    --faint: #8a8f88;               /* meta */
-    --hairline: #ddd9cb;            /* borders */
-    --hairline-2: #c9c4b4;          /* lighter borders */
-    --teal: #0f766b;                /* primary action */
-    --teal-deep: #0a5b50;           /* hover */
-    --teal-ink: #0e6f63;            /* link ink */
-    --amber-ink: #8a5a00;           /* warning */
-    --red-ink: #b3261e;             /* destructive */
-  }
-  ```
-- For a simple docs landing page, use the `--serif` heading stack (New York / Georgia / Times), `--mono` for code and buttons, and keep it flat with no shadows. Example:
-  ```html
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Spillover</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <style>
-      :root {
-        --bg:#f2f1ec; --text:#191b1a; --teal:#0f766b; --link:#0e6f63; --code:#3c413e;
-        --font-serif: "New York",Georgia,"Times New Roman",serif;
-        --font-sans:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
-        --font-mono:ui-monospace,SFMono-Regular,Menlo,Monaco,"Liberation Mono",monospace;
-      }
-      body{background:var(--bg);color:var(--text);font-family:var(--font-sans);line-height:1.6;margin:0;padding:40px;}
-      h1{font-family:var(--font-serif);font-size:2rem;margin:.3em 0}
-      p,li{font-size:15px;color:var(--text)}
-      code,p code,pre{font-family:var(--font-mono);background:var(--bg);padding:2px 6px;border-radius:6px;font-size:14px;}
-      pre{background:#f8f7f3;padding:12px;border-radius:8px;overflow:auto;}
-      a{color:var(--link);text-decoration:none;border-bottom:1px solid var(--teal);}
-      a:hover{border-bottom-color:var(--teal);color:var(--teal-deep);}
-      .btn{display:inline-block;background:var(--teal);color:#fff;padding:8px 14px;border-radius:8px;text-decoration:none;font-family:var(--font-mono);font-size:13px;}
-      .btn:hover{background:var(--teal-deep);}
-      .note{background:#faf0d8;color:var(--amber-ink);padding:10px 12px;border-radius:8px;font-family:var(--font-mono);font-size:13px;border:1px solid #d9b36a;}
-    </style>
-  </head>
-  <body>
-    <h1>Spillover</h1>
-    <p>Rebalance your Google storage across your own accounts — locally, open source.</p>
-    <p><strong>Everything runs on your PC.</strong> No servers, no uploads to third parties, no account credentials ever leaving your machine.</p>
-
-    <h2>Install</h2>
-    <pre><code>git clone &lt;your-repo&gt; spillover &amp;&amp; cd spillover
-python3 -m venv .venv &amp;&amp; source .venv/bin/activate
-pip install -r requirements.txt
-pip install -e .</code></pre>
-
-    <h2>One-time setup</h2>
-    <div class="note">Create your own Google Cloud project and save client_secret.json to ~/.spillover — see the full guide in <a href="#setup">Setup</a>.</div>
-
-    <h2>Run</h2>
-    <pre><code>spillover ui                  # opens 127.0.0.1:8741
-spillover ui --demo           # demo mode without signing in</code></pre>
-
-    <h2 id="setup">Setup</h2>
-    <ol>
-      <li>Create a Google Cloud project: <a href="https://console.cloud.google.com/projectcreate" target="_blank" rel="noopener">console.cloud.google.com/projectcreate</a></li>
-      <li>Enable APIs: Drive API, Photos Picker API</li>
-      <li>Create Credentials → OAuth client ID (Desktop app)</li>
-      <li>Download JSON → save as <code>~/.spillover/client_secret.json</code></li>
-    </ol>
-
-    <h2>Safety</h2>
-    <ul>
-      <li>Dry-run by default; verify-before-trash</li>
-      <li>Trash, never delete (30-day undo)</li>
-      <li>Never fills a destination: 1 GB safety buffer</li>
-      <li>Cross-account dedupe, shared-file protection, crash-safe resume</li>
-    </ul>
-
-    <h2 style="margin-top:2.5em;">Demo video — coming soon</h2>
-    <p>Reserved location: <code>demo.mp4</code>. We'll link it once it lands.</p>
-  </body>
-  </html>
-  ```
-Commit and push again, let GitHub serve it, and hard-refresh to clear any cache.
-
-### Option B: Qoder Sites (managed hosting)
-
-If you want zero-config deployment with analytics and version management, we can add the project to Qoder Sites:
-
-```bash
-# After initializing the descriptor (.qoder.site.yaml or similar)
-qoder sites deploy <project-name> .
-```
-
-The deployed docs will reuse the same CSS tokens and type treatment as the web UI.
 
 ---
 
