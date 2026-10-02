@@ -1,8 +1,8 @@
-<table width="100%" style="text-align:center;">
-<tr><td align="center">
-<img src="assets/logo.svg" width="88" alt="Spillover logo — ink-black tile, a vessel filled with teal liquid and one drop over the rim">
-</td></tr>
-</table>
+<br><br>
+<p align="center">
+  <img src="assets/logo.svg" width="88" alt="Spillover logo — ink-black tile, a vessel filled with teal liquid and one drop over the rim">
+</p>
+<br>
 
 <h1 align="center">Spillover</h1>
 
