@@ -1,6 +1,6 @@
-<center>
-  <img src="assets/logo.svg" width="88" alt="Spillover logo — ink-black tile, a vessel filled with teal liquid and one drop over the rim">
-</center>
+<div style="text-align:center">
+<img src="assets/logo.svg" width="88" alt="Spillover logo — ink-black tile, a vessel filled with teal liquid and one drop over the rim">
+</div>
 
 <h1 align="center">Spillover</h1>
 
