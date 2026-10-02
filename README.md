@@ -1,6 +1,8 @@
-<img src="assets/logo.svg" width="88" alt="Spillover logo — ink-black tile, a vessel filled with teal liquid and one drop over the rim">
+<div style="text-align: center;">
+  <img src="assets/logo.svg" width="88" alt="Spillover logo — ink-black tile, a vessel filled with teal liquid and one drop over the rim">
+</div>
 
-# Spillover
+<h1 align="center" style="text-align: center;">Spillover</h1>
 
 **Rebalance your Google storage across your own accounts — locally, open source.**
 
