@@ -21,7 +21,7 @@ jobs:
       matrix:
         language: [python, javascript-typescript]
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: github/codeql-action/init@v4
         with:
           languages: ${{ matrix.language }}
@@ -35,7 +35,7 @@ jobs:
       contents: read
       pull-requests: read
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: actions/dependency-review-action@v5
         with:
           fail-on-severity: high
@@ -48,7 +48,7 @@ jobs:
       security-events: write
       id-token: write
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           persist-credentials: false
       - uses: ossf/scorecard-action@v2.5.0
