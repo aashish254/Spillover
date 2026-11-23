@@ -24,9 +24,9 @@ Everything runs on **your PC**. No servers, no uploads to third parties, no acco
 Full walkthrough: connecting accounts, the rebalance wizard, duplicates, and the Photos picker — 7m22s.
 
 **Quick run:**
-- **UI:** `spillover ui` opens http://127.0.0.1:8741  
-- **Demo mode (no sign-in):** `spillover ui --demo`  
-- **Custom port:** `spillover ui --port 9000 --no-browser`  
+- **UI:** `spillover ui` opens http://127.0.0.1:8741
+- **Demo mode (no sign-in):** `spillover ui --demo`
+- **Custom port:** `spillover ui --port 9000 --no-browser`
 
 ## Screenshots
 
